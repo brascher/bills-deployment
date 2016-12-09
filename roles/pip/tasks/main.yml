@@ -1,0 +1,13 @@
+---
+- name: Update apt cache
+  apt: 
+    update_cache: yes 
+  tags:
+    - pip
+
+- name: Install pip
+  apt:
+    name: "{{ python_pip_version }}"
+    state: installed
+  tags:
+    - pip

@@ -8,11 +8,11 @@ The repository currently includes the following:
 - MongoDB role
 - MySQL role
 - NodeJS role
+- Pip role
 - Supervisord role
 
 I am currently working on adding the following roles:
 - Java role
-- Python role
 
 ## Instructions
 The vm name is currently **dev-machine**. If you want to change the machine name or IP, simply update the *dev.inventory*, *hosts*, and *Vagrantfile* files with your desired machine name and IP. To start the vm, run:
