@@ -1,0 +1,24 @@
+---
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- include: setup-Debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Copy Supervisord config
+  template:
+    src=mongodb-supervisord-conf.j2
+    dest={{ supervisord_programs_dir }}/mongodb-supervisord.conf
+    mode=0644
+  notify:
+    - reread supervisord
+  tags:
+    - mongodb
+    - supervisord
+
+- name: Add MongoDB to Supervisord
+  supervisorctl:
+    name: mongodb
+    state: present
+  tags:
+    - mongodb

@@ -1,0 +1,43 @@
+---
+- name: Debian - Import public key.
+  apt_key:
+    id={{ mongodb_key_id }}
+    state=present
+    keyserver={{ mongodb_key_server }}
+  tags: 
+    - mongodb
+
+- name: Debian - Create list file for MongoDB
+  template:
+    src=mongodb-org.list.j2
+    dest=/etc/apt/sources.list.d/mongodb-org-{{ mongodb_version_number }}.list
+  tags: 
+    - mongodb
+
+- name: Update apt-get cache
+  apt: update-cache=yes
+  tags:
+    - mongodb
+
+- name: Debian - Install MongoDB packages.
+  apt: 
+    pkg: "{{ item }}={{ mongodb_package_version_number }}"
+    state: installed
+  with_items: "{{ mongodb_packages }}"
+  tags:
+    - mongodb
+
+- name: Debian - Pin MongoDB version
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  with_items: "{{ mongodb_packages }}"
+  tags: 
+    -mongodb
+
+- name: Debian - Stop MongoDB
+  service:
+    name=mongod
+    state=stopped
+  tags:
+    - mongodb

@@ -1,0 +1,4 @@
+---
+# file: host_vars/dev-machine
+
+host_placeholder: some_value

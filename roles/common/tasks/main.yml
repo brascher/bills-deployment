@@ -1,0 +1,6 @@
+---
+- name: Ubuntu - Install common packages
+  include: setup-Ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+  tags: 
+    - common

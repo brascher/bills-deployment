@@ -1,0 +1,11 @@
+[mongodb]
+dev-machine
+
+[mysql]
+dev-machine
+
+[nodejs]
+dev-machine
+
+[pip]
+dev-machine

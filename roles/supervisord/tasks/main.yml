@@ -1,0 +1,53 @@
+---
+- name: Ubuntu set up
+  include: setup-Ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+  tags:
+    - supervisord
+
+- name: Install supervisor
+  easy_install: 
+    name=supervisor
+    state=latest
+  tags:
+    - supervisord
+
+- name: Ensure Supervisor directories are created
+  file:
+    state=directory
+    dest={{ item }}
+    mode=0755
+  with_items:
+    - "{{ supervisord_log_dir }}"
+    - "{{ supervisord_programs_dir }}"
+  tags: 
+    - supervisord
+
+- name: Set up Supervisor configuration
+  template:
+    src=supervisord.conf.j2
+    dest=/etc/supervisord.conf
+  tags:
+    - supervisord
+
+- name: Setup Ubuntu Supervisord service script
+  copy: 
+    src=supervisord_ubuntu
+    dest=/etc/init.d/supervisord
+    owner=root
+    group=root
+    mode=0755
+  when: ansible_distribution == "Ubuntu"
+  tags:
+    - supervisord
+
+- name: Ensure Supervisor is running
+  service:
+    name: supervisord
+    state: started
+  tags:
+    - supervisord
+
+- name: Set fact supervisord_has_run
+  set_fact:
+    supervisord_has_run: true 

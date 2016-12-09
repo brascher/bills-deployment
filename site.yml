@@ -1,0 +1,43 @@
+---
+# -------------------------------- Common -------------------------------------
+- name: Run Common installation
+  hosts: all
+  roles: [ common ]
+  tags:
+    - install-common
+
+# ------------------------------- Supervisor ----------------------------------
+- name: Run Supervisord installation
+  hosts: all
+  roles: [ supervisord ]
+  tags:
+    - install-supervisord
+
+# -------------------------------- NodeJS -------------------------------------
+- name: Run NodeJS installation
+  hosts: nodejs
+  roles: [ nodejs]
+  tags:
+    - install-nodejs
+
+# -------------------------------- MongoDB ------------------------------------
+- name: Run MongoDB installation
+  hosts: mongodb
+  roles: [ mongodb ]
+  tags: 
+    - install-mongodb
+
+# --------------------------------- MySQL -------------------------------------
+- name: Run MySQL installation
+  hosts: mysql
+  roles: [ mysql ]
+  tags:
+    - install-mysql
+
+# ---------------------------------- Pip --------------------------------------
+- name: Run Pip installation
+  hosts: pip
+  roles: [ pip ]
+  tags:
+    - install-pip
+
