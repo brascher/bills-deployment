@@ -1,4 +1,4 @@
-# bills-deployment
+# dev-deployment-scripts
 
 ## Overview
 I use this repository to quickly set up local vm's with the software I want to use for development. This is definitely not intended for prime time, but rather something that as a Windows user I have to do repetitively. It's very basic and simple, but gets me up and running in multiple environments very quickly. New roles for software will continue to be added and updated.
