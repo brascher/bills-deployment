@@ -1,0 +1,7 @@
+---
+- name: Install python-setuptools
+  apt: 
+    name=python-setuptools
+    state=latest
+  tags:
+    - supervisord

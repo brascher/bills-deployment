@@ -1,0 +1,5 @@
+---
+
+mongodb_key_id: 7F0CEB10
+mongodb_key_server: hkp://keyserver.ubuntu.com:80
+mongodb_repo: deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen

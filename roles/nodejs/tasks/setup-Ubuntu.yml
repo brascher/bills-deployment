@@ -1,0 +1,31 @@
+---
+- name: Get NodeJS setup file
+  get_url:
+    url: "{{ node_source_base_repo }}/setup_{{ nodejs_version }}"
+    dest: "/tmp/setup_{{ nodejs_version }}"
+    mode: 0777
+    validate_certs: no
+  tags:
+    - nodejs
+
+- name: Execute NodeJS setup file
+  shell: /tmp/setup_{{ nodejs_version }}
+  args:
+    executable: /bin/bash
+  tags:
+    - nodejs
+
+- name: Clean up NodeJS setup file
+  file:
+    path=/tmp/setup_{{ nodejs_version }}
+    state=absent
+  ignore_errors: yes
+  tags:
+    - nodejs
+
+- name: Install NodeJS
+  apt:
+    name=nodejs
+    state=latest
+  tags:
+    - nodejs 

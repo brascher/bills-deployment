@@ -1,0 +1,10 @@
+---
+mongodb_version_number: 3.2
+mongodb_package_version_number: 3.2.5
+
+mongodb_packages:
+  - "mongodb-org"
+  - "mongodb-org-server"
+  - "mongodb-org-shell"
+  - "mongodb-org-mongos"
+  - "mongodb-org-tools"

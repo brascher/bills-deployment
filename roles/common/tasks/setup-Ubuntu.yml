@@ -1,0 +1,16 @@
+---
+- name: Update apt-get cache
+  apt: update-cache=yes
+  tags:
+    - common
+
+- name: Install common packages
+  apt:
+    name={{ item }}
+    state=latest
+  with_items:
+    - zip
+    - unzip
+    - apt-transport-https
+  tags:
+    - common

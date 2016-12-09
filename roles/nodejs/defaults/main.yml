@@ -1,0 +1,3 @@
+---
+node_source_base_repo: http://deb.nodesource.com
+nodejs_version: 7.x

@@ -1,0 +1,4 @@
+---
+# file: group_vars/all
+
+group_placeholder: some_value
